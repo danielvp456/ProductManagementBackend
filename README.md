@@ -1,126 +1,126 @@
 # Product Management API
 
-API REST desarrollada con NestJS para la gestión de usuarios con autenticación JWT y roles.
+REST API developed with NestJS for user management with JWT authentication and roles.
 
-## Arquitectura del Proyecto
+## Project Architecture
 
-La aplicación sigue una arquitectura modular:
+The application follows a modular architecture:
 
 ```
 src/
-├── auth/                  # Módulo de autenticación
-│   ├── decorators/       # Decoradores personalizados
+├── auth/                  # Authentication module
+│   ├── decorators/       # Custom decorators
 │   ├── dto/              # Data Transfer Objects
-│   ├── guards/           # Guards de autenticación y roles
-│   ├── strategies/       # Estrategias de Passport
+│   ├── guards/           # Authentication and role guards
+│   ├── strategies/       # Passport strategies
 │   └── ...
-├── common/               # Recursos compartidos
-│   ├── exceptions/       # Excepciones personalizadas
-│   ├── filters/         # Filtros de excepciones
+├── common/               # Shared resources
+│   ├── exceptions/       # Custom exceptions
+│   ├── filters/         # Exception filters
 │   └── ...
-├── users/               # Módulo de usuarios
+├── users/               # Users module
 │   ├── dto/            # Data Transfer Objects
-│   ├── schemas/        # Esquemas de MongoDB
+│   ├── schemas/        # MongoDB schemas
 │   └── ...
-└── main.ts             # Punto de entrada de la aplicación
+└── main.ts             # Application entry point
 ```
 
-## Requisitos Previos
+## Prerequisites
 
-- Node.js (v18 o superior)
+- Node.js (v18 or higher)
 - MongoDB
-- npm o yarn
+- npm or yarn
 
-## Configuración del Proyecto
+## Project Setup
 
-1. Clonar el repositorio:
+1. Clone the repository:
 ```bash
-git clone https://github.com/tu-usuario/product-management-api.git
+git clone https://github.com/your-username/product-management-api.git
 cd product-management-api
 ```
 
-2. Instalar dependencias:
+2. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Crear archivo `.env` en la raíz del proyecto:
+3. Create `.env` file in the project root:
 ```env
-MONGODB_URI=mongodb+srv://usuario:password@cluster.mongodb.net/database
-JWT_SECRET=tu_secreto_jwt_super_seguro
+MONGODB_URI=mongodb+srv://user:password@cluster.mongodb.net/database
+JWT_SECRET=your_super_secure_jwt_secret
 PORT=3000
 ```
 
-## Ejecución del Proyecto
+## Running the Project
 
 ```bash
-# Desarrollo
+# Development
 npm run start:dev -- --env-file .env
 
-# Producción
+# Production
 npm run build
 npm run start:prod -- --env-file .env
 ```
 
-## Documentación API (Swagger)
+## API Documentation (Swagger)
 
-La documentación de la API está disponible en:
+API documentation is available at:
 ```
 http://localhost:3000/api
 ```
 
-## Endpoints Principales
+## Main Endpoints
 
-### Autenticación
+### Authentication
 
-- `POST /auth/login`: Iniciar sesión
+- `POST /auth/login`: User login
   ```json
   {
-    "email": "usuario@ejemplo.com",
-    "password": "contraseña123"
+    "email": "user@example.com",
+    "password": "password123"
   }
   ```
 
-### Usuarios
+### Users
 
-- `POST /users/register`: Registro público de usuarios
+- `POST /users/register`: Public user registration
   ```json
   {
-    "name": "Usuario Ejemplo",
-    "email": "usuario@ejemplo.com",
-    "password": "contraseña123"
+    "name": "Example User",
+    "email": "user@example.com",
+    "password": "password123"
   }
   ```
 
-- `POST /users/setup-admin`: Crear primer usuario administrador
+- `POST /users/setup-admin`: Create first admin user
   ```json
   {
     "name": "Admin",
-    "email": "admin@ejemplo.com",
+    "email": "admin@example.com",
     "password": "admin123"
   }
   ```
 
-## Roles y Permisos
+## Roles and Permissions
 
-El sistema maneja dos tipos de roles:
-- `USER`: Usuario regular
-- `ADMIN`: Administrador con acceso total
+The system handles two types of roles:
+- `USER`: Regular user
+- `ADMIN`: Administrator with full access
 
-### Permisos por Rol
+### Permissions by Role
 
 **USER**
-- Puede ver y actualizar su propio perfil
-- Puede eliminar su propia cuenta
+- Can view and update their own profile
+- Can delete their own account
 
 **ADMIN**
-- Puede gestionar todos los usuarios
-- Puede asignar roles
-- Acceso total al sistema
+- Can manage all users
+- Can assign roles
+- Full system access
 
-## Manejo de Errores
+## Error Handling
 
-La API implementa un sistema centralizado de manejo de errores que retorna respuestas con el siguiente formato:
+The API implements a centralized error handling system that returns responses in the following format:
 
 ```json
 {
@@ -132,40 +132,38 @@ La API implementa un sistema centralizado de manejo de errores que retorna respu
 }
 ```
 
-## Seguridad
+## Security
 
-- Autenticación mediante JWT
-- Contraseñas hasheadas con bcrypt
-- Validación de roles mediante guards
-- Protección contra inyección de MongoDB
-- Validación de datos mediante class-validator
+- JWT Authentication
+- Passwords hashed with bcrypt
+- Role validation through guards
+- MongoDB injection protection
+- Data validation using class-validator
 
-## Scripts Disponibles
+## Available Scripts
 
 ```bash
-# Desarrollo
+# Development
 npm run start:dev
 
-# Producción
+# Production
 npm run start:prod
 
 # Tests
 npm run test
 npm run test:e2e
 
-# Linting y Formateo
+# Linting and Formatting
 npm run lint
 npm run format
 ```
 
-## Contribución
+## Contributing
 
-1. Fork el repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## Licencia
 
-Este proyecto está bajo la Licencia MIT - ver el archivo [LICENSE.md](LICENSE.md) para más detalles.

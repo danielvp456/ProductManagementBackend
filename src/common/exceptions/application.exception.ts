@@ -29,4 +29,16 @@ export class InvalidCredentialsException extends ApplicationException {
   constructor() {
     super('Invalid credentials', HttpStatus.UNAUTHORIZED);
   }
+}
+
+export class ProductNotFoundException extends ApplicationException {
+  constructor(id: string) {
+    super(`Product with ID ${id} not found`, HttpStatus.NOT_FOUND);
+  }
+}
+
+export class InsufficientStockException extends ApplicationException {
+  constructor() {
+    super('Insufficient stock available', HttpStatus.BAD_REQUEST);
+  }
 } 
