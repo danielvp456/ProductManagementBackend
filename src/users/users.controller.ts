@@ -23,7 +23,7 @@ import { RegisterUserDto } from './dto/register-user.dto';
 
 @ApiTags('users')
 @Controller('users')
-@ApiBearerAuth()
+@ApiBearerAuth('JWT-auth')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
