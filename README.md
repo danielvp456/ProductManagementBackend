@@ -158,6 +158,13 @@ npm run lint
 npm run format
 ```
 
+## Docker
+
+```bash
+docker build -t product-management-api .
+docker run -p 3000:3000 --env-file .env product-management-api
+```
+
 ## Contributing
 
 1. Fork the repository
