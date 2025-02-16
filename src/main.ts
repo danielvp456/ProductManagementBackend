@@ -18,6 +18,13 @@ async function bootstrap() {
   // Registrar el filtro global de excepciones
   app.useGlobalFilters(new AllExceptionsFilter());
 
+  // Habilitar CORS usando variable de entorno
+  app.enableCors({
+    origin: process.env.CORS_ORIGIN?.split(','),
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  });
+
   const config = new DocumentBuilder()
     .setTitle('Product Management API')
     .setDescription('API for managing products')
