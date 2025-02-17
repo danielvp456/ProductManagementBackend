@@ -22,7 +22,15 @@ export class PurchasedProduct {
 @Schema({ timestamps: true })
 export class Invoice extends Document {
   @ApiProperty({ type: () => User })
-  @Prop({ type: MongooseSchema.Types.ObjectId, ref: 'User', required: true })
+  @Prop({
+    type: {
+      _id: { type: MongooseSchema.Types.ObjectId, ref: 'User' },
+      name: String,
+      email: String,
+      role: String
+    },
+    required: true
+  })
   user: User;
 
   @ApiProperty({ type: [PurchasedProduct] })

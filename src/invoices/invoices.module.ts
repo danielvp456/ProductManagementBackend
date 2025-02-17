@@ -4,11 +4,13 @@ import { Invoice, InvoiceSchema } from './schemas/invoice.schema';
 import { InvoicesService } from './invoices.service';
 import { InvoicesController } from './invoices.controller';
 import { ProductsModule } from '../products/products.module';
+import { UsersModule } from '../users/users.module';
 
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: Invoice.name, schema: InvoiceSchema }]),
-    ProductsModule
+    ProductsModule,
+    UsersModule
   ],
   providers: [InvoicesService],
   controllers: [InvoicesController],
