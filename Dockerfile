@@ -21,7 +21,7 @@ COPY package*.json ./
 RUN npm install --only=production
 
 COPY --from=builder /app/dist ./dist
-COPY .env ./
+# COPY .env ./
 
 EXPOSE 3000
 
